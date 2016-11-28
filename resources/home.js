@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
   window.gyroGraph.update();
 
   // Update the page every second
-  setInterval(update, 1000);
+  update();
 
 }, false);
 

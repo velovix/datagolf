@@ -15,7 +15,7 @@ func main() {
 	serialName := os.Args[1]
 
 	// Connect to the device
-	_, err := newDevice(serialName)
+	d, err := newDevice(serialName)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -25,7 +25,7 @@ func main() {
 	http.Handle("/resources/", http.StripPrefix("/resources", fs))
 
 	// Handle data requests
-	http.Handle("/data", &dataHandler{})
+	http.Handle("/data", &dataHandler{d})
 
 	// Handle the homepage
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {

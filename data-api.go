@@ -2,12 +2,12 @@ package main
 
 import (
 	"encoding/json"
-	"math/rand"
+	"log"
 	"net/http"
 )
 
 type dataHandler struct {
-	d device
+	dev device
 }
 
 type dataResp struct {
@@ -16,24 +16,34 @@ type dataResp struct {
 }
 
 func (h *dataHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	accelData := make([]int, 100)
-	for i := 0; i < 100; i++ {
-		accelData[i] = rand.Intn(128)
-	}
-	gyroData := make([]int, 100)
-	for i := 0; i < 100; i++ {
-		gyroData[i] = rand.Intn(128)
+	accel, gyro, err := h.dev.data()
+	if err != nil {
+		http.Error(w, "could not get data", 500)
+		log.Println(err)
+		return
 	}
 
 	resp := dataResp{
-		Accel: accelData,
-		Gyro:  gyroData,
+		Accel: xyzAverage(accel),
+		Gyro:  xyzAverage(gyro),
 	}
 
 	data, err := json.Marshal(resp)
 	if err != nil {
 		http.Error(w, "could not send data", 500)
+		log.Println(err)
+		return
 	}
 
 	w.Write(data)
+}
+
+func xyzAverage(data []xyz) []int {
+	averages := make([]int, len(data))
+
+	for i, pnt := range data {
+		averages[i] = (pnt.x + pnt.y + pnt.z) / 3
+	}
+
+	return averages
 }
