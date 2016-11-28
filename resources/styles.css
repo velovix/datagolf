@@ -1,0 +1,48 @@
+@import('https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css');
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
+
+header .h1 {
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	height: 100%;
+
+	display: flex;
+	flex-direction: column;
+}
+
+header {
+	background-color: #6bad36;
+	color: white;
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+}
+
+article {
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+
+	flex: 1;
+	align-items: center;
+
+	display: flex;
+	flex-direction: column;
+}
+
+div#graphs {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+div#graphs canvas {
+	padding: 10px;
+
+	max-width: 400px;
+	max-height: 150px;
+}

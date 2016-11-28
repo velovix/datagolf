@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>DataGolf</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="/resources/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="/resources/home.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <h1>DataGolf</h1>
+    </header>
+
+    <article>
+      <!-- Stuff that's shown while content is being built -->
+      <div id="loading">
+        <img src="/resources/loading.svg" alt="Loading image" />
+        <br />
+        Loading...
+      </div>
+
+      <!-- Actual content, hidden while it's being constructed -->
+      <div id="content">
+        <div id="graphs">
+          <div class="graph">
+            <h3>Accelerometer Data</h3>
+            <canvas id="accelGraph"></canvas>
+          </div>
+          <div class="graph">
+            <h3>Gyroscope Data</h3>
+            <canvas id="gyroGraph"></canvas>
+          </div>
+        </div>
+      </div>
+    </article>
+  </body>
+</html>
